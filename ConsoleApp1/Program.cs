@@ -28,5 +28,8 @@ Console.WriteLine("Hello, Welcome to bytebank!! \n");
 
 ContaCorrente conta3 = new ContaCorrente("asdasd-as",12,"Banco Central");
 conta3.Titular = new Cliente("Atillio", "123213","Jogador Caro");
+Console.WriteLine("Contas criadas: " + ContaCorrente.TotalDeContasCriadas);
+ContaCorrente conta4 = new ContaCorrente("aawesd-cc", 12, "Banco Central");
+conta4.Titular = new Cliente("John", "1232ass13", "Jogador de Baralho");
 conta3.Depositar(300);
-Console.WriteLine("Saldo Conta de "+conta3.Titular.Nome+": " +conta3.Saldo);
+Console.WriteLine("Contas criadas: "+ContaCorrente.TotalDeContasCriadas);

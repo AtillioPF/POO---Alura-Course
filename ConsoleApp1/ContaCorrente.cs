@@ -68,7 +68,8 @@ namespace bytebank
         {
             this.NumeroAgencia = numeroAgencia;
             this.NomeAgencia = nomeAgencia;
-            this.Conta = conta;           
+            this.Conta = conta;
+            TotalDeContasCriadas += 1;
         }
 
         public ContaCorrente()
@@ -107,7 +108,7 @@ namespace bytebank
                 return true;
             }
         }
-        public int TotalDeContasCriadas { get; set; }
+        public static int TotalDeContasCriadas { get; set; }
 
     }
 }
