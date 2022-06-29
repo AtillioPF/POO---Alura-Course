@@ -8,46 +8,42 @@ namespace bytebank
 {
     internal class ContaCorrente
     {
-        private string titular;
-        private string conta;
+        public Cliente cliente;
+
         private int numeroAgencia;
-        private string nomeAgencia;
+        private string conta, nomeAgencia;
         private double saldo;
 
-        public double Saldo { get => saldo; set => saldo = value; }
-        public string Titular { get => titular; set => titular = value; }
+        public double Saldo { get => saldo; }
         public string Conta { get => conta; set => conta = value; }
-        public int NumeroAgencia { get => numeroAgencia; set => numeroAgencia = value; }
-        public string NomeAgencia { get => nomeAgencia; set => nomeAgencia = value; }
-
-        public ContaCorrente(string conta, int numeroAgencia, string nomeAgencia, string titular = null, double saldo = 0 )
+        public int NumeroAgencia { get => numeroAgencia; }        
+        private int NumeroAgencia2{ set => numeroAgencia = value;}
+        public string NomeAgencia { get => nomeAgencia;  }
+        private string NomeAgencia2 { set => nomeAgencia = value; }
+        public ContaCorrente(string conta, int numeroAgencia, string nomeAgencia, Cliente cliente)
         {
-            this.NumeroAgencia = numeroAgencia;
-            this.Saldo = saldo;
-            this.NomeAgencia = nomeAgencia;
+            this.NumeroAgencia2 = numeroAgencia;            
+            this.NomeAgencia2 = nomeAgencia;
             this.Conta = conta;
-            this.Titular = titular;
+            this.cliente = cliente;
         }
 
-        public void show()
-        {
-            Console.WriteLine(Conta+Titular);
-        }
+        
         public bool Sacar(double valor)
         {
             if(valor<0)
                 return false;
-            if (Saldo < valor)
+            if (saldo < valor)
                 return false;
             else
-                Saldo-=valor;
+                saldo -= valor;
             return true;
         }
 
         public void Depositar(double valor)
         {   
-            if (valor>0)                
-            Saldo = Saldo + valor;
+            if (valor>0)
+                saldo = saldo + valor;
 
         }
 
@@ -59,7 +55,7 @@ namespace bytebank
                 return false;
             else
             {
-                Saldo = Saldo - valor; ;
+                saldo = saldo - valor; ;
                 destino.Depositar(valor);
                 return true;
             }
