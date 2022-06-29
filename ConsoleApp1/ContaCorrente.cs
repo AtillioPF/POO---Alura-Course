@@ -8,30 +8,77 @@ namespace bytebank
 {
     internal class ContaCorrente
     {
-        public Cliente cliente;
+        
 
-        private int numeroAgencia;
-        private string conta, nomeAgencia;
         private double saldo;
+        private int _numero_agencia;
+        private string _nome_agencia, _conta;
+
+        public Cliente Titular { get; set; }
 
         public double Saldo { get => saldo; }
-        public string Conta { get => conta; set => conta = value; }
-        public int NumeroAgencia { get => numeroAgencia; }        
-        private int NumeroAgencia2{ set => numeroAgencia = value;}
-        public string NomeAgencia { get => nomeAgencia;  }
-        private string NomeAgencia2 { set => nomeAgencia = value; }
-        public ContaCorrente(string conta, int numeroAgencia, string nomeAgencia, Cliente cliente)
-        {
-            this.NumeroAgencia2 = numeroAgencia;            
-            this.NomeAgencia2 = nomeAgencia;
-            this.Conta = conta;
-            this.cliente = cliente;
-        }
 
         
+        public string Conta
+        {
+            get
+            {
+                return _conta;
+            }                
+            set
+            {
+                if (value == null)
+                    return;
+                else
+                    _conta = value;
+            }
+        }
+        
+        public int NumeroAgencia 
+        {
+            get
+            {
+                return _numero_agencia;
+            }
+            set 
+            {
+                if (value <= 0)
+                    return;
+                else
+                    _numero_agencia = value;    
+            }
+        }
+        
+        public string NomeAgencia
+        {
+            get
+            {
+                return _nome_agencia;
+            }
+            set
+            {
+                if (value == null)
+                    return;
+                else
+                    _nome_agencia = value;
+            }
+        }
+
+        public ContaCorrente(string conta , int numeroAgencia, string nomeAgencia )
+        {
+            this.NumeroAgencia = numeroAgencia;
+            this.NomeAgencia = nomeAgencia;
+            this.Conta = conta;           
+        }
+
+        public ContaCorrente()
+        {
+
+        }
+
         public bool Sacar(double valor)
         {
-            if(valor<0)
+            if (valor < 0)
                 return false;
             if (saldo < valor)
                 return false;
@@ -41,8 +88,8 @@ namespace bytebank
         }
 
         public void Depositar(double valor)
-        {   
-            if (valor>0)
+        {
+            if (valor > 0)
                 saldo = saldo + valor;
 
         }
@@ -60,6 +107,7 @@ namespace bytebank
                 return true;
             }
         }
+        public int TotalDeContasCriadas { get; set; }
 
     }
 }

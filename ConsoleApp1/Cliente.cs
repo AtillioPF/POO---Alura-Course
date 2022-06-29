@@ -8,17 +8,19 @@ namespace bytebank
 {
     internal class Cliente
     {
-        private string nome, cpf, profissão;
+        public string Profissão { get; set; }
+        public string Nome { get; set; }
+        public string Cpf { get; set; }
 
-        public Cliente(string nome,string cpf, string profissão)
+        public Cliente() { }
+        public Cliente(string nome, string cpf, string profissão)
         {
-            this.nome = nome;
-            this.cpf = cpf;
-            this.profissão = profissão;
+            this.Nome = nome;
+            this.Cpf = cpf;
+            this.Profissão = profissão;
         }
 
-        public string Profissão { get => profissão; set => profissão = value; }
-        public string Nome { get => nome; set => nome = value; }
-        public string Cpf { get => cpf; set => cpf = value; }
+        
+        
     }
 }
