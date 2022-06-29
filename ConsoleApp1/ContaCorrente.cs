@@ -14,43 +14,52 @@ namespace bytebank
         private string nomeAgencia;
         private double saldo;
 
+        public double Saldo { get => saldo; set => saldo = value; }
+        public string Titular { get => titular; set => titular = value; }
+        public string Conta { get => conta; set => conta = value; }
+        public int NumeroAgencia { get => numeroAgencia; set => numeroAgencia = value; }
+        public string NomeAgencia { get => nomeAgencia; set => nomeAgencia = value; }
 
         public ContaCorrente(string conta, int numeroAgencia, string nomeAgencia, string titular = null, double saldo = 0 )
         {
-            this.numeroAgencia = numeroAgencia;
-            this.saldo = saldo;
-            this.nomeAgencia = nomeAgencia;
-            this.conta = conta;
-            this.titular = titular;
+            this.NumeroAgencia = numeroAgencia;
+            this.Saldo = saldo;
+            this.NomeAgencia = nomeAgencia;
+            this.Conta = conta;
+            this.Titular = titular;
         }
 
+        public void show()
+        {
+            Console.WriteLine(Conta+Titular);
+        }
         public bool Sacar(double valor)
         {
             if(valor<0)
                 return false;
-            if (saldo < valor)
+            if (Saldo < valor)
                 return false;
             else
-                saldo-=valor;
+                Saldo-=valor;
             return true;
         }
 
         public void Depositar(double valor)
         {   
             if (valor>0)                
-            saldo = saldo + valor;
+            Saldo = Saldo + valor;
 
         }
 
         public bool Transferir(double valor, ContaCorrente destino)
         {
-            if (saldo < valor)
+            if (Saldo < valor)
                 return false;
             if (valor < 0)
                 return false;
             else
             {
-                saldo = saldo - valor; ;
+                Saldo = Saldo - valor; ;
                 destino.Depositar(valor);
                 return true;
             }
